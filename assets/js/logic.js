@@ -1,3 +1,17 @@
+// time block variables 
+
+var nineBlock = $(".firstB");
+var tenBlock = $(".secondB");
+var elevenBlock = $(".thirdB");
+var twelveBlock = $(".fourthB");
+var oneBlock = $(".fifthB");
+var twoBlock = $(".sixthB");
+var threeBlock = $(".seventhB");
+var fourBlock = $(".eighthB");
+var fiveBlock = $(".ninthB");
+
+var blocksArr = [nineBlock,tenBlock,elevenBlock,twelveBlock,oneBlock,twoBlock,threeBlock,fourBlock,fiveBlock];
+
 
 // Set current time at top of page
 var currentTime = moment().format("dddd, MMMM Do");
@@ -41,8 +55,48 @@ $(".save").click(function() {
 
     $(this).prev().find("textarea").replaceWith(textInput);
 
-    
-    
-        
-    console.log(text);
 });
+
+// Color coded time check
+
+var timeCheck = function(timeBlock) {
+    // get hour from span
+    var hour = $(timeBlock).find("span").text();
+
+    // convert to integer and switch 1-5pm into 24 hour time
+    hour = parseInt(hour);
+    if (hour < 6 && hour > 0) {
+        hour += 12;
+    }
+
+    // convert to moment object
+    hour = moment().set("hour", hour);
+    console.log(hour);
+
+    // Remove current color-coding classes
+    $(timeBlock).find(".task").removeClass("bg-secondary bg-success bg-danger");
+
+    // Change color-coding
+
+    
+    if (moment().isAfter(hour)) {
+        $(timeBlock).find(".task").addClass("bg-secondary");
+    }
+    else if (moment().isSame(hour)) {
+        $(timeBlock).find(".task").addClass("bg-danger");
+    }
+    else {
+        $(timeBlock).find(".task").addClass("bg-success");
+    }
+
+
+};
+
+
+// for loop to run through each time block and pass as argument into timeCheck function
+
+// for (var i=0; i < blocksArr.length; i++) {
+//     timeCheck(blocksArr[i]);
+// };
+
+timeCheck(nineBlock);
