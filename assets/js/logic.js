@@ -24,8 +24,22 @@ $(".task").on("click", "p", function() {
 
 $(".save").click(function() {
     // get the textarea current value/text
+    console.log($(this).prev().find("textarea"));
+    
     var text = $(this)
-    .closest(".task");
+    .prev()
+    .find("textarea")
+    .val()
+    .trim();
+
+    var textInput = $("<p>")
+        .addClass("h-100 p-3")
+        .text(text);
+
+    $(this).prev().find("textarea").replaceWith(textInput);
+
+    
+    
         
     console.log(text);
 });
