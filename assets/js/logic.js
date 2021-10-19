@@ -59,9 +59,52 @@ $(".save").click(function() {
 
 // Color coded time check
 
-var timeCheck = function(timeBlock) {
-    // get hour from span
-    var hour = $(timeBlock).find("span").text();
+// var timeCheck = function(timeBlock) {
+//     // get hour from span
+//     var hour = $(timeBlock).find("span").text();
+
+//     // convert to integer and switch 1-5pm into 24 hour time
+//     hour = parseInt(hour);
+//     if (hour < 6 && hour > 0) {
+//         hour += 12;
+//     }
+
+//     // convert to moment object
+//     hour = moment().set("hour", hour);
+//     console.log(hour);
+
+//     // Remove current color-coding classes
+//     $(timeBlock).find(".task").removeClass("bg-secondary bg-success bg-danger");
+
+//     // Change color-coding
+
+    
+//     if (moment().isAfter(hour)) {
+//         $(timeBlock).find(".task").addClass("bg-secondary");
+//     }
+//     else if (moment().isSame(hour)) {
+//         $(timeBlock).find(".task").addClass("bg-danger");
+//     }
+//     else {
+//         $(timeBlock).find(".task").addClass("bg-success");
+//     }
+
+
+// };
+
+// Interval set to run for loop on time checks
+
+setInterval(function() {
+    // for loop to run through each time block and pass as argument into timeCheck function
+    // for (var i=0; i < blocksArr.length; i++) {
+    //     timeCheck(blocksArr[i]);
+    // };
+
+    // Each method to run through all the row elements and execute the timecheck function
+
+    $(".row").each(function(){
+        // get hour from span
+    var hour = $(this).find("span").text();
 
     // convert to integer and switch 1-5pm into 24 hour time
     hour = parseInt(hour);
@@ -74,31 +117,22 @@ var timeCheck = function(timeBlock) {
     console.log(hour);
 
     // Remove current color-coding classes
-    $(timeBlock).find(".task").removeClass("bg-secondary bg-success bg-danger");
+    $(this).find(".task").removeClass("bg-secondary bg-success bg-danger");
 
-    // Change color-coding
+        // Change color-coding
 
-    
-    if (moment().isAfter(hour)) {
-        $(timeBlock).find(".task").addClass("bg-secondary");
-    }
-    else if (moment().isSame(hour)) {
-        $(timeBlock).find(".task").addClass("bg-danger");
-    }
-    else {
-        $(timeBlock).find(".task").addClass("bg-success");
-    }
+        
+        if (moment().isAfter(hour)) {
+            $(this).find(".task").addClass("bg-secondary");
+        }
+        else if (moment().isSame(hour)) {
+            $(this).find(".task").addClass("bg-danger");
+        }
+        else {
+            $(this).find(".task").addClass("bg-success");
+        }
 
-
-};
-
-// Interval set to run for loop on time checks
-
-setInterval(function() {
-    // for loop to run through each time block and pass as argument into timeCheck function
-    for (var i=0; i < blocksArr.length; i++) {
-        timeCheck(blocksArr[i]);
-    };
-}, (1000*60));
+    });
+}, (1000*20));
 
 
