@@ -12,7 +12,7 @@ $(".task").on("click", "p", function() {
         .trim();
 
     var textInput = $("<textarea>")
-        .addClass("form-control bg-transparent")
+        .addClass("form-control-plaintext bg-transparent h-100 p-3 border-0")
         .val(text);
 
     $(this).replaceWith(textInput);
@@ -30,7 +30,10 @@ $(".save").click(function() {
     .prev()
     .find("textarea")
     .val()
-    .trim();
+    
+    if (text) {
+        text = text.trim();
+    }
 
     var textInput = $("<p>")
         .addClass("h-100 p-3")
