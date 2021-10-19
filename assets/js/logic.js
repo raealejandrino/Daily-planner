@@ -92,11 +92,13 @@ var timeCheck = function(timeBlock) {
 
 };
 
+// Interval set to run for loop on time checks
 
-// for loop to run through each time block and pass as argument into timeCheck function
+setInterval(function() {
+    // for loop to run through each time block and pass as argument into timeCheck function
+    for (var i=0; i < blocksArr.length; i++) {
+        timeCheck(blocksArr[i]);
+    };
+}, (1000*60));
 
-// for (var i=0; i < blocksArr.length; i++) {
-//     timeCheck(blocksArr[i]);
-// };
 
-timeCheck(nineBlock);
