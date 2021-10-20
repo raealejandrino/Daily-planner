@@ -20,6 +20,8 @@ var loadTasks = function() {
         8: []
       };
     }
+
+    $.each(tasks, createTasks(tasks));
 };
 
 var saveTasks = function() {
@@ -27,10 +29,14 @@ var saveTasks = function() {
   };
 
 
-var createTasks = function(index, text) {
-    
+var createTasks = function(task) {
+    var task = $(".save")
+        .closest(".row")
+        .index();
 
-}
+    console.log(task);
+
+};
 // Set current time at top of page
 var currentTime = moment().format("dddd, MMMM Do");
 
@@ -127,4 +133,6 @@ setInterval(function() {
     });
 }, (1000*20));
 
+
+loadTasks();
 
