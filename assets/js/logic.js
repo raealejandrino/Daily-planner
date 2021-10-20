@@ -50,7 +50,8 @@ $(".task").on("click", "p", function() {
         .trim();
 
     var textInput = $("<textarea>")
-        .addClass("form-control-plaintext bg-transparent h-100 p-3 border-0")
+        .addClass("form-control-plaintext bg-transparent p-3 border-0")
+        .css("height", "78px")
         .val(text);
 
     $(this).replaceWith(textInput);
