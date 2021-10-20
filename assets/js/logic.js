@@ -21,7 +21,9 @@ var loadTasks = function() {
       };
     }
 
-    $.each(tasks, createTasks(tasks));
+    for (const [key, value] of Object.entries(tasks)) {
+        createTasks(key, value);
+    }
 };
 
 var saveTasks = function() {
@@ -29,12 +31,10 @@ var saveTasks = function() {
   };
 
 
-var createTasks = function(task) {
-    var task = $(".save")
-        .closest(".row")
-        .index();
+var createTasks = function(key, value) {
+    var taskElements = $(".save").closest(".row");
 
-    console.log(task);
+    $(taskElements[key]).find("p").text(value);
 
 };
 // Set current time at top of page
