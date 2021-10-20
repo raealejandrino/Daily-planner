@@ -93,9 +93,7 @@ $(".save").click(function() {
 
 // Color coded time check
 
-// Interval set to run for loop on time checks
-
-setInterval(function() {
+function checkTime() {
     // Each method to run through all the row elements and execute the timecheck function
 
     $(".row").each(function(){
@@ -117,13 +115,13 @@ setInterval(function() {
 
         // Block color-coding
 
-        // Change past timeblocks to grey
-        if (moment().isAfter(hour)) {
-            $(this).find(".task").addClass("bg-secondary");
-        }
         // Change current timeblock to red
-        else if (moment().isSame(hour)) {
+        if (moment().isSame(hour)) {
             $(this).find(".task").addClass("bg-danger");
+        }
+        // Change past timeblocks to grey
+        else if (moment().isAfter(hour)) {
+            $(this).find(".task").addClass("bg-secondary");
         }
         // Change future timeblocks to green
         else {
@@ -131,8 +129,14 @@ setInterval(function() {
         }
 
     });
+}
+
+// Interval set to run for loop on time checks
+
+setInterval(function checkTime() {
 }, (1000*20));
 
 
+checkTime();
 loadTasks();
 
